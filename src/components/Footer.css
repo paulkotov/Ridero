@@ -1,0 +1,15 @@
+.filters {
+    display: inline-block;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    left: 500px;
+}
+
+.filters li{
+    display: inline-block;
+    background-color:  beige;
+}
+
+.filters li:hover {
+    border-bottom-color: grey;
+
+}
