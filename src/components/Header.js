@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import TextInput from './TextInput';
-//import Image from './Image';
+import Image from './Image';
 import './Header.css';
 
 export default class Header extends Component {
@@ -19,7 +19,9 @@ export default class Header extends Component {
       <div>
         <h1 className="title">Library</h1>
         <header className="header">
-
+        <Image  name="image"
+                image=""
+                onSave={this.handleSave}/>
         <TextInput newBook
                        name="author"
                        onSave={this.handleSave}
