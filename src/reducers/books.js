@@ -7,8 +7,8 @@ const initialState = [
     id: 1,
     img: {
       link: '',
-      width: 100,
-      height: 100
+      width: 145,
+      height: 205
     }
   }
 ];

@@ -1,5 +1,6 @@
-import books from './books'
-import * as types from '../constants/ActionTypes'
+import books from './books';
+import * as types from '../constants/ActionTypes';
+import { expect } from 'enzyme';
 
 describe('Books reducer', () => {
   it('should handle initial state', () => {
@@ -9,7 +10,12 @@ describe('Books reducer', () => {
       {
         author: 'Arthur Conan Doyle',
         title: 'Sherlock Holmes',
-        id: 1
+        id: 1,
+        img: {
+          link: '',
+          width: 100,
+          height: 100
+        }
       }
     ]);
   });
@@ -18,70 +24,43 @@ describe('Books reducer', () => {
     expect(
       books([], {
         type: types.ADD_BOOK,
-        author: 'Arthur Conan Doyle',
-        title: 'Sherlock Holmes',
+        author: 'Suzanne Collins',
+        title: 'The Hunger Games',
       })
     ).toEqual([
       {
-        author: 'Arthur Conan Doyle',
-        title: 'Sherlock Holmes',
-        id: 1
-      }
-    ]);
-
-    expect(
-      books([
-        {
-        author: 'Arthur Conan Doyle',
-        title: 'Sherlock Holmes',
-        id: 1
+        author: 'Suzanne Collins',
+        title: 'The Hunger Games',
+        id: 1,
+        img: {
+          link: '',
+          width: 100,
+          height: 100
         }
-      ], {
-        type: types.ADD_BOOK,
-        author: 'Arthur Conan Doyle',
-        title: 'Sherlock Holmes',
-      })
-    ).toEqual([
-      {
-        author: 'Arthur Conan Doyle',
-        title: 'Sherlock Holmes',
-        id: 1
-      }, {
-        author: 'Arthur Conan Doyle',
-        title: 'Sherlock Holmes',
-        id: 1
       }
     ]);
 
     expect(
       books([
         {
-        author: 'Arthur Conan Doyle',
-        title: 'Sherlock Holmes',
-          id: 2
-        }, {
-        author: 'Test',
-        title: 'Test',
+          author: 'Arthur Conan Doyle',
+          title: 'Sherlock Holmes',
           id: 1
         }
       ], {
         type: types.ADD_BOOK,
-        author: 'Arthur Conan Doyle',
-        title: 'Sherlock Holmes',
+        author: 'Suzanne Collins',
+        title: 'The Hunger Games',
       })
     ).toEqual([
       {
         author: 'Arthur Conan Doyle',
         title: 'Sherlock Holmes',
-        id: 2
-      }, {
-        text: 'Run the tests',
-        completed: false,
         id: 1
       }, {
-        text: 'Use Redux',
-        completed: false,
-        id: 0
+        author: 'Suzanne Collins',
+        title: 'The Hunger Games',
+        id: 2
       }
     ]);
   });
@@ -90,13 +69,23 @@ describe('Books reducer', () => {
     expect(
       books([
         {
-          text: 'Run the tests',
-          completed: false,
-          id: 1
+          author: 'Arthur Conan Doyle',
+          title: 'Sherlock Holmes',
+          id: 1,
+          img: {
+            link: '',
+            width: 100,
+            height: 100
+          }
         }, {
-          text: 'Use Redux',
-          completed: false,
-          id: 0
+          author: 'Suzanne Collins',
+          title: 'The Hunger Games',
+          id: 2,
+          img: {
+            link: '',
+            width: 100,
+            height: 100
+          }
         }
       ], {
         type: types.DELETE_BOOK,
@@ -115,13 +104,23 @@ describe('Books reducer', () => {
     expect(
       books([
         {
-          text: 'Run the tests',
-          completed: false,
-          id: 1
+          author: 'Arthur Conan Doyle',
+          title: 'Sherlock Holmes',
+          id: 1,
+          img: {
+            link: '',
+            width: 100,
+            height: 100
+          }
         }, {
-          text: 'Use Redux',
-          completed: false,
-          id: 0
+          author: 'Suzanne Collins',
+          title: 'The Hunger Games',
+          id: 2,
+          img: {
+            link: '',
+            width: 100,
+            height: 100
+          }
         }
       ], {
         type: types.EDIT_BOOK,

@@ -1,5 +1,5 @@
 {
-  "name": "todomvc",
+  "name": "Ridero-test-task",
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
@@ -44,6 +44,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open",
+    "run": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "test": "react-scripts test"
