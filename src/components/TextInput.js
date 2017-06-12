@@ -34,12 +34,11 @@ export default class TextInput extends Component {
       <input className={
         classnames({
           edit: this.props.editing,
-          'new-book': this.props.newBook
+          'newbook': this.props.newBook
         })}
         type="text"
         name={this.props.name}
         placeholder={this.props.placeholder}
-        autoFocus="true"
         value={this.state.text}
         onChange={this.handleChange}
         onKeyDown={this.handleSubmit} />

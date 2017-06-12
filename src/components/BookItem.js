@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import TextInput from './TextInput';
 import './BookItem.css';
+import image from './1.png';
 
 export default class BookItem extends Component {
   static propTypes = {
@@ -10,11 +11,19 @@ export default class BookItem extends Component {
     editBook: PropTypes.func.isRequired,
     deleteBook: PropTypes.func.isRequired
   };
-  
-  constructor(props){
-    super(props);  
+
+  static defaultProps = {
+    image
+  };
+
+
+  constructor(){
+    super();  
     this.state = {
       editing: false,
+      id: 0,
+      author: '',
+      title: ''
     };
   }
 
@@ -22,33 +31,42 @@ export default class BookItem extends Component {
     this.setState({ editing: true });
   }
 
-  handleSave = (id, name, text) => {
-    if (text.length === 0) {
-      this.props.deleteBook(id);
+  onFieldChange = (fieldName, e) => {
+    if (e.target.value.trim().length > 0) {
+      this.setState({ [''+fieldName]: e.target.value.trim() });
     } else {
-      this.props.editBook(id, name, text);
+      this.setState({ [''+fieldName]: '' });
     }
+  }   
+  
+  onBtnClickHandler = (bookId) => e => {
+    e.preventDefault();
+    this.setState({ id: bookId }); 
+    const author = this.AuthorInput.state.text;
+    const title = this.TitleInput.state.text;
+        
+    this.props.editBook(this.state.id, author, title);
     this.setState({ editing: false });
   }
 
   render() {
-    const { book, editBook, deleteBook } = this.props;
+    const { book, deleteBook } = this.props;
     let element;
     if (this.state.editing) {
       element = (
         <div className="edit">
           <TextInput text={book.author}
-                      name="Author" 
+                      ref={input => this.AuthorInput = input}
                       editing={this.state.editing} 
-                      onSave={(text, name) => this.handleSave(book.id, name, text)} 
+                      onChange={this.onFieldChange.bind(this, 'authorIsEmpty')} 
           /><br/>
           <TextInput text={book.title} 
-                      name="Title"
+                      ref={input => this.TitleInput = input}
                       editing={this.state.editing} 
-                      onSave={(text, name) => this.handleSave(book.id, name, text)} 
+                      onChange={this.onFieldChange.bind(this, 'titleIsEmpty')} 
           />
           <button className="Save" 
-                  onClick={() => editBook(book.id)} > Save </button>            
+                  onClick={this.onBtnClickHandler(book.id)} > Save </button>            
         </div>
     );
     } else {
@@ -59,6 +77,7 @@ export default class BookItem extends Component {
                  checked={book.completed}
                  onChange={() => book.id} />
           <label>
+            <img src={image} alt=""></img>
             {`book Information: ID: ${book.id},
                                   Author: ${book.author}, 
                                   Title: ${book.title},

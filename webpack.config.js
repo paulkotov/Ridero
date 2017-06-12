@@ -2,11 +2,12 @@ const { resolve } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+
 module.exports = {
   entry: [
     'react-hot-loader/patch',
     'webpack/hot/only-dev-server',
-    './src/index.js'
+    './src/index.js',
   ],
   output: {
     path: resolve(__dirname, 'build'),
@@ -62,10 +63,6 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery'
-    }),
     new HtmlWebpackPlugin({
       template: 'index.html'
     })

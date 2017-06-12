@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-//import ReactDOM from 'react-dom';
 import TextInput from './TextInput';
-//import Image from './Image';
+import Image from './Image';
 import './Header.css';
 
 export default class Header extends Component {
@@ -17,11 +16,10 @@ export default class Header extends Component {
     };
   }
 
-  // handleSave = text => {
-  //   if (text.length !== 0) {
-  //     this.props.addBook(text);
-  //   }
-  // }
+  handleSave = () => {
+
+  }
+
 
   onFieldChange = (fieldName, e) => {
     if (e.target.value.trim().length > 0) {
@@ -37,19 +35,8 @@ export default class Header extends Component {
     const title = this.TitleInput.value;
         
     this.props.addBook(author, title, '');
-    // const author = ReactDOM.findDOMNode(this.refs.author).value;
-    // const title = ReactDOM.findDOMNode(this.refs.title).value;
-    // var title = textElement.value;
-
-    // var item = [{
-    //   author: author,
-    //   text: title,
-    //   bigText: '...'
-    // }];
-
-    // window.ee.emit('News.add', item);
-    // this.setState({ textIsEmpty: true });
   }
+  
   render() {
     return (
       <div>

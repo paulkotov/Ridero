@@ -14,8 +14,8 @@ export default class Main extends Component {
     actions: PropTypes.object.isRequired
   }
 
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
     this.state = { filter: SHOW_ALL };
   }
 
