@@ -72,21 +72,22 @@ export default class BookItem extends Component {
     } else {
       element = (
         <div className="view">
-          <input className="toggle"
-                 type="checkbox"
-                 checked={book.completed}
-                 onChange={() => book.id} />
-          <label>
             <img src={image} alt=""></img>
-            {`book Information: ID: ${book.id},
-                                  Author: ${book.author}, 
-                                  Title: ${book.title},
-            `}                  
+            <div className="Book-info">
+            <label>  
+              {'ID:'} <strong>{book.id}</strong>{' '}
+              {'Author:'}<strong>{book.author}</strong> {' '}
+              {'Title: '} <strong>{book.title}</strong>                
           </label>
           <button className="editBook" 
                   onClick={() => {this.setState({ editing: true });}} > Edit </button>
           <button className="deleteBook" 
-                  onClick={() => deleteBook(book.id)} > Delete </button>
+                  onClick={() => deleteBook(book.id)} > Delete </button><br/>
+          Competed: <input className="toggle"
+                 type="checkbox"
+                 checked={book.completed}
+                 onChange={() => book.id} />
+          </div>        
         </div>
       );
     }

@@ -1,12 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import BookItem from './BookItem';
 import Footer from './Footer';
-import { SHOW_ALL, SHOW_AUTHOR } from '../constants/BookFilters';
-
-const BOOK_FILTERS = {
-  [SHOW_ALL]: () => true,
-  [SHOW_AUTHOR]: book => book.author
-};
 
 export default class Main extends Component {
   static propTypes = {
@@ -16,11 +10,16 @@ export default class Main extends Component {
 
   constructor(){
     super();
-    this.state = { filter: SHOW_ALL };
+    this.state = { 
+      filter: 'SHOW_ALL',
+      author: '' 
+    };
   }
 
   handleShow = filter => {
-    this.setState({ filter });
+    this.setState({ 
+      filter: 'AUTHOR', 
+      author: filter });
   }
 
   renderToggleAll(completedCount) {
@@ -33,6 +32,13 @@ export default class Main extends Component {
                onChange={actions.completeAll} />
       );
     }
+  }
+
+  resetFilter = () => {
+    this.setState({
+      filter: 'SHOW_ALL',
+      author: ''
+    });
   }
 
   renderFooter(count) {
@@ -50,9 +56,16 @@ export default class Main extends Component {
 
   render() {
     const { books, actions } = this.props;
-    const { filter } = this.state;
 
-    const filteredBooks = books.filter(BOOK_FILTERS[filter]);
+    const filteredBooks = books.filter((elem) => {
+      switch(this.state.filter){     
+        case 'AUTHOR': 
+          return (elem.author === this.state.author) ? true : false;
+
+        default:
+          return true;
+      }
+    });  
     const count = books.length;
     
     return (
@@ -63,6 +76,7 @@ export default class Main extends Component {
           )}
         </ul>
         {this.renderFooter(count)}
+        <button onClick={this.resetFilter}> Reset </button>
       </div>
     );
   }

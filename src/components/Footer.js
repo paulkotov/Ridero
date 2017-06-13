@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import classnames from 'classnames';
+import TextInput from './TextInput';
 import { SHOW_ALL, SHOW_AUTHOR } from '../constants/BookFilters';
 import './Footer.css';
 
@@ -39,19 +40,31 @@ export default class Footer extends Component {
     );
   }
 
+  onFieldChange = (fieldName, e) => {
+    if (e.target.value.trim().length > 0) {
+      this.setState({ [''+fieldName]: e.target.value.trim() });
+    } 
+  }
+
+  onBtnClickHandler = e => {
+    e.preventDefault();
+    const { onShow } = this.props;
+    onShow(this.CityFilterInput.state.text);
+  }
+
   render() {
     return (
-      <footer className="footer">
+     <footer className="footer">
         {this.renderBookCount()}
-        <br/>Select filter 
-        <ul className="filters">
-          {[ SHOW_ALL, SHOW_AUTHOR ].map(filter =>
-            <li key={filter}>
-              {this.renderFilterLink(filter)}{' || '}
-            </li>
-          )}
-        </ul>
-      </footer>
+        <hr/>
+        <br/>Filter: 
+        <TextInput type="text" 
+                ref={input => this.CityFilterInput = input}
+                onChange={this.onFieldChange.bind(this, 'CityFilterIsEmpty')}
+                placeholder="Enter author" />{' '}
+        <button className="Set Filter" 
+                      onClick={this.onBtnClickHandler}> Set </button>   
+      </footer> 
     );
   }
 }

@@ -1,7 +1,6 @@
 .image {
-    border-radius: 100%;
     box-shadow: 0 0 15px 0 rgba(0,1,1,0.75);
-    height: 170px;
+    height: 250px;
     margin: 0 auto 11px;
-    width: 170px;
+    width: 145px;
 }

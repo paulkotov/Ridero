@@ -16,11 +16,6 @@ export default class Header extends Component {
     };
   }
 
-  handleSave = () => {
-
-  }
-
-
   onFieldChange = (fieldName, e) => {
     if (e.target.value.trim().length > 0) {
       this.setState({ [''+fieldName]: e.target.value.trim() });
@@ -29,12 +24,19 @@ export default class Header extends Component {
     }
   }
   
+  onClickHandler = () => {
+    this.refs.photo.click();
+  }
+
   onBtnClickHandler = e => {
     e.preventDefault();
-    const author = this.AuthorInput.value;
-    const title = this.TitleInput.value;
-        
+    const author = this.AuthorInput.state.text;
+    const title = this.TitleInput.state.text;
     this.props.addBook(author, title, '');
+    this.AuthorInput.state.text='';
+    this.TitleInput.state.text ='';
+
+
   }
   
   render() {
@@ -42,8 +44,9 @@ export default class Header extends Component {
       <div>
         <h1 className="title">Library</h1>
         <header className="header">
-          <div className="Cover">
-            <Image  image=" " onSave={this.handleSave}/>
+          Add Book
+          <br/><div className="Cover" onClick={this.onClickHandler}>
+            <Image  image=" " /><br/>
             <input type="file" className="Cover-hiddenElement" ref="photo" />
           </div>
           <form className='add-book'>

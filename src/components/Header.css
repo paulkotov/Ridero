@@ -5,15 +5,14 @@
 
 .header{
     display: inline-block;
-    border-left-style: groove;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-bottom-color: beige;
 }
 
 .Cover{
-
+  cursor: pointer;  
 }
 
-.Cover-hidden{
-    
+.Cover-hiddenElement{
+    display: none;
 }

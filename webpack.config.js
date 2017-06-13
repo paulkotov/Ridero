@@ -10,14 +10,14 @@ module.exports = {
     './src/index.js',
   ],
   output: {
-    path: resolve(__dirname, 'build'),
-    filename: '../public/bundle.js',
+    path: resolve(__dirname, 'public'),
+    filename: 'bundle.js',
     publicPath: '/'
   },
   devtool: 'inline-source-map',
   devServer: {
     hot: true,
-    contentBase: resolve(__dirname, 'build'),
+    contentBase: resolve(__dirname, 'public'),
     port: 3000,
     publicPath: '/',
     historyApiFallback: true,

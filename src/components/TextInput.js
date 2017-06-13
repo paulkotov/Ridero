@@ -11,8 +11,11 @@ export default class TextInput extends Component {
     newBook: PropTypes.bool
   };
 
-  state = {
-    text: this.props.text || ''
+  constructor(props){
+    super(props);
+    this.state = {
+      text: this.props.text || ''
+    };
   }
 
   handleSubmit = e => {

@@ -1,12 +1,26 @@
 .view{
     background-color: #FFFFCC;
-    display: inline-block;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-left-style: groove;
+    border-right-style: groove;
+
+}
+.view .Book-info{
+
+    display:  block;
 }
 
+.view .toogle{
+       display:  inline-block; 
+}
+.view img {
+    border: 1px solid;
+    margin: 5px;
+}
 .edit{
     display: inline-block;
     border-left-style: groove;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-bottom-color: beige;
+
 }
