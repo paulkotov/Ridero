@@ -28,7 +28,7 @@ export default function books(state = initialState, action) {
 
     case DELETE_BOOK:
       return state.filter(book =>
-        book.id !== book.id
+        book.id !== action.id
       );
 
     case EDIT_BOOK:

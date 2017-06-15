@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 export default class TextInput extends Component {
   static propTypes = {
-    onSave: PropTypes.func.isRequired,
+    onSave: PropTypes.func,
     name: PropTypes.string,
     text: PropTypes.string,
     placeholder: PropTypes.string,

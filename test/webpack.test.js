@@ -1,32 +1,21 @@
 'use strict';
 
-const path = require('path');
-const pathTo = p => path.resolve(process.cwd(), p);
 const nodeExternals = require('webpack-node-externals');
-const webpack = require('webpack');
-
-const NODE_ENV = 'development';
 
 module.exports = {
-  // entry: ['./test_utils/test.index.js'],
+  //entry: ['./test/test.index.js'],
   target:        'node',
-  devtool:       'cheap-module-source-map',
   externals:     [nodeExternals()],
-  // output: {
-  //   path: pathTo('./tmp'),
-  //   filename: 'test.bundle.js',
-  //   devtoolModuleFilenameTemplate: '[absolute-resource-path]',
-  //   devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
-  // },
   module:        {
-    loaders: [
+    rules: [
+
       {
-        test:    /\.jsx?$/,
+        test:    /\.js$/,
         exclude: /node_modules/,
-        loader:  'babel?cacheDirectory'
+        loader:  'babel-loader'
       },
       {
-        test:   /\.s?css$/,
+        test:   /\.css$/,
         loader: 'null'
       },
       {
@@ -39,26 +28,8 @@ module.exports = {
       }
     ]
   },
-  resolve:       {
-    extensions: ['', '.js', '.jsx', '.scss'],
-    root:       pathTo('./src/')
-  },
-  resolveLoader: {
-    fallback: [pathTo('./node_modules')]
-  },
-  sassLoader:    {
-    includePaths: [pathTo('./src')]
-  },
+
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env':          Object.keys(process.env).reduce(function (o, k) {
-        o[k] = JSON.stringify(process.env[k]);
-        return o;
-      }, {}),
-      // NODE_ENV не всегда передается при запуске, поэтому присваем принудительно
-      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
-      GA_CONFIG:              {},
-      DEVELOPMENT:            NODE_ENV === 'development'
-    })
+
   ]
 };
