@@ -36,7 +36,7 @@ describe('BookItem', () => {
   it('should have been rendered properly', () => {
     const _wrapper = shallow(<BookItem {...props} />);
     expect(_wrapper.node.type).to.equal('li');
-    expect(_wrapper.node.props.className).to.equal('');
+    expect(_wrapper.node.props.className).to.equal('list-group-item');
 
   });
 });
