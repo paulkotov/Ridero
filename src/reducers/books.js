@@ -21,7 +21,9 @@ export default function books(state = initialState, action) {
           id: state.reduce((maxId, book) => Math.max(book.id, maxId), -1) + 1,
           author: action.author,
           title: action.title,
-          img: { link: action.link }
+          img: { link: action.link,
+            width: 145,
+            height: 205 }
         },
         ...state
       ];

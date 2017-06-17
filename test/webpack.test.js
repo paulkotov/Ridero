@@ -16,15 +16,15 @@ module.exports = {
       },
       {
         test:   /\.css$/,
-        loader: 'null'
+        loader: 'null-loader'
       },
       {
         test:   /\.(eot|svg|ttf|woff|json|png|jpg|idl)$/,
-        loader: 'null'
+        loader: 'null-loader'
       },
       {
         test:   /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       }
     ]
   },

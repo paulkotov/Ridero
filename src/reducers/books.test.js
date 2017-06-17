@@ -1,20 +1,20 @@
 import books from './books';
 import * as types from '../constants/ActionTypes';
-import { expect } from 'enzyme';
+import { expect } from 'chai';
 
 describe('Books reducer', () => {
   it('should handle initial state', () => {
     expect(
       books(undefined, {})
-    ).toEqual([
+    ).to.deep.equal([
       {
         author: 'Arthur Conan Doyle',
         title: 'Sherlock Holmes',
         id: 1,
         img: {
           link: '',
-          width: 100,
-          height: 100
+          width: 145,
+          height: 205
         }
       }
     ]);
@@ -22,45 +22,41 @@ describe('Books reducer', () => {
 
   it('should handle ADD_BOOK', () => {
     expect(
-      books([], {
-        type: types.ADD_BOOK,
-        author: 'Suzanne Collins',
-        title: 'The Hunger Games',
-      })
-    ).toEqual([
-      {
-        author: 'Suzanne Collins',
-        title: 'The Hunger Games',
+      books([{
+        author: 'Arthur Conan Doyle',
+        title: 'Sherlock Holmes',
         id: 1,
         img: {
           link: '',
-          width: 100,
-          height: 100
+          width: 145,
+          height: 205
         }
-      }
-    ]);
-
-    expect(
-      books([
-        {
-          author: 'Arthur Conan Doyle',
-          title: 'Sherlock Holmes',
-          id: 1
-        }
-      ], {
+      }], {
         type: types.ADD_BOOK,
         author: 'Suzanne Collins',
         title: 'The Hunger Games',
+        link: ''
       })
-    ).toEqual([
+    ).to.deep.equal([
+      {
+        author: 'Suzanne Collins',
+        title: 'The Hunger Games',
+        id: 2,
+        img: {
+          link: '',
+          width: 145,
+          height: 205
+        }
+      },
       {
         author: 'Arthur Conan Doyle',
         title: 'Sherlock Holmes',
-        id: 1
-      }, {
-        author: 'Suzanne Collins',
-        title: 'The Hunger Games',
-        id: 2
+        id: 1,
+        img: {
+          link: '',
+          width: 145,
+          height: 205
+        }
       }
     ]);
   });
@@ -74,8 +70,8 @@ describe('Books reducer', () => {
           id: 1,
           img: {
             link: '',
-            width: 100,
-            height: 100
+            width: 145,
+            height: 205
           }
         }, {
           author: 'Suzanne Collins',
@@ -83,19 +79,24 @@ describe('Books reducer', () => {
           id: 2,
           img: {
             link: '',
-            width: 100,
-            height: 100
+            width: 145,
+            height: 205
           }
         }
       ], {
         type: types.DELETE_BOOK,
         id: 1
       })
-    ).toEqual([
+    ).to.deep.equal([
       {
-        text: 'Use Redux',
-        completed: false,
-        id: 0
+        author: 'Suzanne Collins',
+        title: 'The Hunger Games',
+        id: 2,
+        img: {
+          link: '',
+          width: 145,
+          height: 205
+        }
       }
     ]);
   });
@@ -109,8 +110,8 @@ describe('Books reducer', () => {
           id: 1,
           img: {
             link: '',
-            width: 100,
-            height: 100
+            width: 145,
+            height: 205
           }
         }, {
           author: 'Suzanne Collins',
@@ -118,24 +119,35 @@ describe('Books reducer', () => {
           id: 2,
           img: {
             link: '',
-            width: 100,
-            height: 100
+            width: 145,
+            height: 205
           }
         }
       ], {
         type: types.EDIT_BOOK,
-        text: 'Fix the tests',
+        author: 'Test',
+        title: 'Test',
         id: 1
       })
-    ).toEqual([
+    ).to.deep.equal([
       {
-        text: 'Fix the tests',
-        completed: false,
-        id: 1
+        author: 'Test',
+        title: 'Test',
+        id: 1,
+        img: {
+          link: '',
+          width: 145,
+          height: 205
+        }
       }, {
-        text: 'Use Redux',
-        completed: false,
-        id: 0
+        author: 'Suzanne Collins',
+        title: 'The Hunger Games',
+        id: 2,
+        img: {
+          link: '',
+          width: 145,
+          height: 205
+        }
       }
     ]);
   });

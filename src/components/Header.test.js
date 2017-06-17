@@ -1,32 +1,30 @@
 import React from 'react';
-//import { ShallowRenderer } from 'react-test-renderer/shallow';
 import Header from './Header';
-//import TextInput from './TextInput';
-import { expect, shallow } from 'enzyme';
-import { jest } from 'jest';
+import { shallow } from 'enzyme';
+import { expect } from 'chai';
 
 const props = {
-  addBook: jest.fn()
+  addBook: function(author, title, link){
+    return { 
+      type: 'ADD_BOOK', 
+      payload: {
+        author: author, 
+        title: title, 
+        link: link }
+    };
+  }
 };
-
-  // const setup = () => {
-  //   return {
-  //     props: props,
-  //     output: output,
-  //     renderer: renderer
-  //   };
-  // };
 
 describe('Header component', () => {
   let output;
   beforeEach(()=> {
     output = shallow(<Header {...props} />);
   });
-  it('should render correctly', () => { 
-    expect(output.type).to.equal('div');
+  it('should have been rendered properly', () => { 
+    expect(output.node.type).to.equal('div');
   });
   it('should render form for input data', () => {
-    const _wrapper = output.find('add-book');
-    expect(_wrapper.props.children[0].type).to.equal('TextInput()');
+    const _wrapper = output.find('.add-book');
+    expect(_wrapper.node.type).to.equal('form');
   });
 });  

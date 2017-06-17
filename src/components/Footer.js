@@ -18,11 +18,11 @@ export default class Footer extends Component {
 
   renderBookCount() {
     const { count } = this.props;
-    const itemWord = count === 1 ? 'item' : 'items';
+    const itemWord = count === 1 ? 'book' : 'books';
 
     return (
       <span className="books-count">
-        <strong>{count || 'No'}</strong> {itemWord} total
+        <strong>{count || 'No'}</strong> {itemWord} found
       </span>
     );
   }
@@ -62,7 +62,7 @@ export default class Footer extends Component {
                 ref={input => this.CityFilterInput = input}
                 onChange={this.onFieldChange.bind(this, 'CityFilterIsEmpty')}
                 placeholder="Enter author" />{' '}
-        <button className="Set Filter" 
+        <button className="Set Filter btn btn-default" 
                       onClick={this.onBtnClickHandler}> Set </button>   
       </footer> 
     );

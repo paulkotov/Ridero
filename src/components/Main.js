@@ -70,7 +70,7 @@ export default class Main extends Component {
     
     return (
       <div className="main">
-        <ul className="books-list">
+        <ul className="books-list list-group">
           {filteredBooks.map(book =>
             <BookItem key={book.id} book={book} {...actions} />
           )}

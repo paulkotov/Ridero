@@ -79,9 +79,9 @@ export default class BookItem extends Component {
               {'Author:'}<strong>{book.author}</strong> {' '}
               {'Title: '} <strong>{book.title}</strong>                
           </label>
-          <button className="editBook" 
+          <button className="editBook btn btn-default" 
                   onClick={() => {this.setState({ editing: true });}} > Edit </button>
-          <button className="deleteBook" 
+          <button className="deleteBook btn btn-default" 
                   onClick={() => deleteBook(book.id)} > Delete </button><br/>
           Competed: <input className="toggle"
                  type="checkbox"
@@ -95,7 +95,8 @@ export default class BookItem extends Component {
     return (
       <li className={classnames({
         completed: book.completed,
-        editing: this.state.editing
+        editing: this.state.editing,
+        'list-group-item': true
       })}>
         {element}
       </li>

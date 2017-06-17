@@ -1,6 +1,6 @@
 .title{
     text-align: center;
-    background-color: whitesmoke;
+    background-color: #E0E0E0;
 }
 
 .header{
@@ -13,6 +13,6 @@
   cursor: pointer;  
 }
 
-.Cover-hiddenElement{
+.Cover .Cover-hiddenElement{
     display: none;
 }

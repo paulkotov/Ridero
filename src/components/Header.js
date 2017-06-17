@@ -46,7 +46,7 @@ export default class Header extends Component {
         <header className="header">
           Add Book
           <br/><div className="Cover" onClick={this.onClickHandler}>
-            <Image  image=" " /><br/>
+            <Image className="thumbnail" image=" " /><br/>
             <input type="file" className="Cover-hiddenElement" ref="photo" />
           </div>
           <form className='add-book'>
@@ -60,14 +60,13 @@ export default class Header extends Component {
                         ref={input => this.TitleInput = input}
                         onChange={this.onFieldChange.bind(this, 'titleIsEmpty')}
                         placeholder="Title" />
-          <button className="add" 
+          <button className="add btn btn-default" 
                     onClick={this.onBtnClickHandler}
                     ref='alert_button'>
                     Add Book
           </button>  
         </form>
       </header>
-      <hr/>
     </div>
     );
   }
