@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import TextInput from './TextInput';
 import './BookItem.css';
-import image from './1.png';
+import Image from './Image';
 
 export default class BookItem extends Component {
   static propTypes = {
@@ -12,18 +12,18 @@ export default class BookItem extends Component {
     deleteBook: PropTypes.func.isRequired
   };
 
-  static defaultProps = {
-    image
-  };
-
-
   constructor(){
     super();  
     this.state = {
       editing: false,
       id: 0,
       author: '',
-      title: ''
+      title: '',
+      img: {
+        link: '',
+        width: 145,
+        height: 205
+      }
     };
   }
 
@@ -72,13 +72,13 @@ export default class BookItem extends Component {
     } else {
       element = (
         <div className="view">
-            <img src={image} alt=""></img>
+            <Image className="thumbnail" image={book.img.link} data-title="Load cover image"/><br/>
             <div className="Book-info">
-            <label>  
-              {'ID:'} <strong>{book.id}</strong>{' '}
-              {'Author:'}<strong>{book.author}</strong> {' '}
-              {'Title: '} <strong>{book.title}</strong>                
-          </label>
+            <div>  
+              {'ID:'} <strong>{book.id}</strong>{', Author: '}
+              <strong>{book.author}</strong> {', Title: '}
+              <strong>{book.title}</strong>                
+          </div>
           <button className="editBook btn btn-default" 
                   onClick={() => {this.setState({ editing: true });}} > Edit </button>
           <button className="deleteBook btn btn-default" 

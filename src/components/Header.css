@@ -9,10 +9,18 @@
     border-bottom-color: beige;
 }
 
-.Cover{
+.cover{
   cursor: pointer;  
 }
 
-.Cover .Cover-hiddenElement{
+.cover .cover-hiddenElement{
     display: none;
+}
+
+.cover .thumbnail:hover:after {
+    content: attr(data-title);
+    position: absolute; 
+    left: 20%; top: 30%;
+    z-index: 1;
+    background: rgba(255,255,230,0.9);
 }

@@ -1,6 +1,14 @@
 .image {
     box-shadow: 0 0 15px 0 rgba(0,1,1,0.75);
+    background-color: white;
     height: 250px;
     margin: 0 auto 11px;
     width: 145px;
+    overflow: hidden;
+}
+
+.image img{
+    position: relative;
+    right: 15px;
+    top: 40px;
 }

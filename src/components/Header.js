@@ -12,7 +12,10 @@ export default class Header extends Component {
     super();
     this.state = {
       author: '',
-      title: ''
+      title: '',
+      link: '',
+      width: 145,
+      height: 205
     };
   }
 
@@ -28,26 +31,44 @@ export default class Header extends Component {
     this.refs.photo.click();
   }
 
-  onBtnClickHandler = e => {
+  onAddBookHandler = e => {
     e.preventDefault();
     const author = this.AuthorInput.state.text;
     const title = this.TitleInput.state.text;
-    this.props.addBook(author, title, '');
+    const link = this.state.link;
+    this.props.addBook(author, title, link);
     this.AuthorInput.state.text='';
     this.TitleInput.state.text ='';
+    this.setState({ link: '' });
 
 
   }
+
+  loadCoverImage = event => {
+    let file = event.target.files[0];
+    let fileReader = new FileReader();
+      
+    fileReader.onload = fileEvent => {
+      this.setState({ link: fileEvent.target.result });
+    };
+ 
+    fileReader.readAsDataURL(file);
+  }
+
   
   render() {
     return (
       <div>
         <h1 className="title">Library</h1>
         <header className="header">
-          Add Book
-          <br/><div className="Cover" onClick={this.onClickHandler}>
-            <Image className="thumbnail" image=" " /><br/>
-            <input type="file" className="Cover-hiddenElement" ref="photo" />
+          Add Book<br/>
+          <div className="cover" onClick={this.onClickHandler}>
+            <Image className="thumbnail" image={this.state.link} data-title="Load cover image"/><br/>
+            <input id="bookCover" 
+                    type="file" 
+                    className="cover-hiddenElement" 
+                    ref="photo" 
+                    onChange={this.loadCoverImage.bind(this)}/>
           </div>
           <form className='add-book'>
           <TextInput newBook
@@ -61,7 +82,7 @@ export default class Header extends Component {
                         onChange={this.onFieldChange.bind(this, 'titleIsEmpty')}
                         placeholder="Title" />
           <button className="add btn btn-default" 
-                    onClick={this.onBtnClickHandler}
+                    onClick={this.onAddBookHandler}
                     ref='alert_button'>
                     Add Book
           </button>  

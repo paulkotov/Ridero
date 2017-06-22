@@ -3,17 +3,19 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .view .Book-info{
-
     display:  block;
+    text-align: center;
+}
+
+.view label{
+    position: relative;
+    text-align: center;
 }
 
 .view .toogle{
        display:  inline-block; 
 }
-.view img {
-    border: 1px solid;
-    margin: 5px;
-}
+
 .edit{
     display: inline-block;
     border-left-style: groove;
